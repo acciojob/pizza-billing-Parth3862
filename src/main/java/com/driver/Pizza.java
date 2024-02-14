@@ -72,11 +72,9 @@ public class Pizza {
             bill += "Extra Toppings Added: " + toppingPrice + "\n";
         }
         if(paperbagAdded){
-            bill += "Paper Bag Added: " + paperbag + "\n";
+            bill += "Paperbag Added: " + paperbag + "\n"; // Corrected output
         }
         bill += "Total Price: " + getPrice() + "\n";
         return bill;
     }
-
-
 }
