@@ -62,8 +62,20 @@ public class Pizza {
     }
 
     public String getBill(){
+        String bill = "";
         bill += "Base Price Of Pizza: " + basePrice + "\n";
+        if(extraCheeseAdded){
+            bill += "Extra Cheese Added: " + extraCheese + "\n";
+        }
+        if(extraToppingsAdded){
+            int toppingPrice = isVeg ? vegExtraToppingsPrice : nonVegExtraToppingsPrice;
+            bill += "Extra Toppings Added: " + toppingPrice + "\n";
+        }
+        if(paperbagAdded){
+            bill += "Paper Bag Added: " + paperbag + "\n";
+        }
         bill += "Total Price: " + getPrice() + "\n";
         return bill;
     }
+
 }
