@@ -2,33 +2,68 @@ package com.driver;
 
 public class Pizza {
 
-    private int price;
-    private Boolean isVeg;
+    private int basePrice;
+    private boolean isVeg;
+    private boolean extraCheeseAdded;
+    private boolean extraToppingsAdded;
+    private boolean paperbagAdded;
+    private static final int vegBasePrice = 300;
+    private static final int nonVegBasePrice = 400;
+    private static final int extraCheese = 80;
+    private static final int vegExtraToppingsPrice = 70;
+    private static final int nonVegExtraToppingsPrice = 120;
+    private static final int paperbag = 20;
     private String bill;
 
-    public Pizza(Boolean isVeg){
+    public Pizza(boolean isVeg){
         this.isVeg = isVeg;
-        // your code goes here
+        if(isVeg){
+            this.basePrice = vegBasePrice;
+        } else {
+            this.basePrice = nonVegBasePrice;
+        }
+        this.bill = "";
     }
 
     public int getPrice(){
-        return this.price;
+        int totalPrice = basePrice;
+        if(extraCheeseAdded){
+            totalPrice += extraCheese;
+        }
+        if(extraToppingsAdded){
+            totalPrice += isVeg ? vegExtraToppingsPrice : nonVegExtraToppingsPrice;
+        }
+        if(paperbagAdded){
+            totalPrice += paperbag;
+        }
+        return totalPrice;
     }
 
     public void addExtraCheese(){
-        // your code goes here
+        if(!extraCheeseAdded){
+            extraCheeseAdded = true;
+            bill += "Extra Cheese Added: " + extraCheese + "\n";
+        }
     }
 
     public void addExtraToppings(){
-        // your code goes here
+        if(!extraToppingsAdded){
+            extraToppingsAdded = true;
+            int toppingPrice = isVeg ? vegExtraToppingsPrice : nonVegExtraToppingsPrice;
+            bill += "Extra Toppings Added: " + toppingPrice + "\n";
+        }
     }
 
     public void addTakeaway(){
-        // your code goes here
+        if(!paperbagAdded){
+            paperbagAdded = true;
+            bill += "Paper Bag Added: " + paperbag + "\n";
+        }
     }
 
     public String getBill(){
-        // your code goes here
-        return this.bill;
+        bill += "Base Price Of Pizza: " + basePrice + "\n";
+        bill += "Total Price: " + getPrice() + "\n";
+        return bill;
     }
 }
